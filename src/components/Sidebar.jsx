@@ -1,5 +1,6 @@
 // src/components/Sidebar.jsx
 import React from "react";
+import logo from "../assets/images/E&E-logo.png"
 import {
   FaTachometerAlt,
   FaUsers,
@@ -10,15 +11,15 @@ import {
 import { Link } from "react-router-dom";
 
 const Sidebar = () => (
-  <div className="sidebar fixed bg-gradient-to-b from-purple-500 to-purple-500 text-white w-64 h-[100vh] p-4">
+  <div className="sidebar fixed bg-gradient-to-b from-red-200 to-red-400 text-white w-64 h-[100vh] p-4">
     <div className="flex flex-col items-center justify-center mb-16">
       <img
         className="h-14"
         alt="Description"
-        src="https://enggenv.com/images/brand-new.png"
+        src={logo}
       />
     </div>
-    <ul>
+    <ul className="text-gray-800">
       <li className="flex items-center mb-9">
         <FaTachometerAlt className="mr-2 text-xl" />
         <Link to="/">Dashboard</Link>
