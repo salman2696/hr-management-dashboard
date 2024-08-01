@@ -1,5 +1,6 @@
 // src/components/EmployeeList.jsx
-import React from "react";
+import React,  { useState } from "react";
+import SearchFilter from "./SearchFilter";
 
 // Sample employee data
 const employees = [
@@ -26,49 +27,68 @@ const employees = [
   { id: 20, name: "Riley Walker", position: "Market Researcher", department: "Marketing", avatar: "https://img.daisyui.com/images/profile/demo/21@94.webp", country: "Czech Republic" },
 ];
 
-const EmployeeList = () => (
-  <div className="overflow-x-auto p-4 w-full text-center">
-    <h1 className="text-2xl font-bold mb-4 text-gray-800">Employees</h1>
-    <table className="table w-full bg-white border border-gray-200 ">
-      <thead className="text-gray-700">
-        <tr>
-          <th className="py-2 px-4 border-b">ID</th>
-          <th className="py-2 px-4 border-b">Name</th>
-          <th className="py-2 px-4 border-b">Position</th>
-          <th className="py-2 px-4 border-b">Department</th>
-          <th className="py-2 px-4 border-b">Actions</th>
-        </tr>
-      </thead>
-      <tbody className="text-gray-500">
-        {employees.map((employee) => (
-          <tr key={employee.id}>
-            <td className="py-2 px-4 border-b">{employee.id}</td>
-            <td className="py-2 px-4 border-b">
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src={employee.avatar}
-                      alt={`${employee.name}'s Avatar`}
-                    />
+const EmployeeList = () => {
+  const [filteredEmployees, setFilteredEmployees] = useState(employees);
+
+  const handleFilterChange = ({ searchTerm, position, department }) => {
+    const filtered = employees.filter((employee) => {
+      const matchesName = employee.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesPosition = position ? employee.position === position : true;
+      const matchesDepartment = department ? employee.department === department : true;
+      return matchesName && matchesPosition && matchesDepartment;
+    });
+    setFilteredEmployees(filtered);
+  };
+
+  return (
+    <div className="p-4 w-full">
+      <div className="sticky top-20 bg-white shadow-md z-10 flex items-center justify-between p-4 rounded-lg">
+        <h1 className="text-2xl text-gray-800">Employees</h1>
+        <SearchFilter onFilterChange={handleFilterChange} />
+      </div>
+      <div className="overflow-x-auto mt-4">
+        <table className="table w-full bg-white border border-gray-200">
+          <thead className="text-gray-700">
+            <tr>
+              <th className="py-2 px-4 border-b">ID</th>
+              <th className="py-2 px-4 border-b">Name</th>
+              <th className="py-2 px-4 border-b">Position</th>
+              <th className="py-2 px-4 border-b">Department</th>
+              <th className="py-2 px-4 border-b">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="text-gray-500">
+            {filteredEmployees.map((employee) => (
+              <tr key={employee.id}>
+                <td className="py-2 px-4 border-b">{employee.id}</td>
+                <td className="py-2 px-4 border-b">
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img
+                          src={employee.avatar}
+                          alt={`${employee.name}'s Avatar`}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{employee.name}</div>
+                      <div className="text-sm opacity-50">{employee.country}</div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <div className="font-bold">{employee.name}</div>
-                  <div className="text-sm opacity-50">{employee.country}</div>
-                </div>
-              </div>
-            </td>
-            <td className="py-2 px-4 border-b">{employee.position}</td>
-            <td className="py-2 px-4 border-b">{employee.department}</td>
-            <td className="py-2 px-4 border-b">
-              <button className="btn btn-ghost btn-xs">View</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+                </td>
+                <td className="py-2 px-4 border-b">{employee.position}</td>
+                <td className="py-2 px-4 border-b">{employee.department}</td>
+                <td className="py-2 px-4 border-b">
+                  <button className="btn btn-ghost btn-xs">View</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
 
 export default EmployeeList;
