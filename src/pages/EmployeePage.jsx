@@ -3,7 +3,7 @@ import React from "react";
 import EmployeeList from "../components/EmployeeList";
 
 const EmployeePage = () => (
-  <div className="employee-page flex bg-gray-200">
+  <div className="employee-page flex">
     <EmployeeList />
   </div>
 );

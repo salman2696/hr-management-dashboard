@@ -2,6 +2,7 @@
 import React,  { useState } from "react";
 import SearchFilter from "./SearchFilter";
 
+
 // Sample employee data
 const employees = [
   { id: 1, name: "John Doe", position: "Software Engineer", department: "IT", avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp", country: "United States" },
@@ -9,8 +10,8 @@ const employees = [
   { id: 3, name: "Alice Johnson", position: "UX Designer", department: "Design", avatar: "https://img.daisyui.com/images/profile/demo/4@94.webp", country: "United Kingdom" },
   { id: 4, name: "Bob Brown", position: "Backend Developer", department: "Engineering", avatar: "https://img.daisyui.com/images/profile/demo/5@94.webp", country: "Australia" },
   // Add more employees as needed, up to 20
-  { id: 5, name: "Charlie Davis", position: "Data Scientist", department: "Data", avatar: "https://img.daisyui.com/images/profile/demo/6@94.webp", country: "Germany" },
-  { id: 6, name: "David Evans", position: "Frontend Developer", department: "Development", avatar: "https://img.daisyui.com/images/profile/demo/7@94.webp", country: "France" },
+  { id: 5, name: "Charlie Davis", position: "Data Scientist", department: "Data", avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp", country: "Germany" },
+  { id: 6, name: "David Evans", position: "Frontend Developer", department: "Development", avatar: "https://img.daisyui.com/images/profile/demo/3@94.webp", country: "France" },
   { id: 7, name: "Eva Green", position: "HR Manager", department: "HR", avatar: "https://img.daisyui.com/images/profile/demo/8@94.webp", country: "Italy" },
   { id: 8, name: "Frank Harris", position: "Project Coordinator", department: "Operations", avatar: "https://img.daisyui.com/images/profile/demo/9@94.webp", country: "Spain" },
   { id: 9, name: "Grace Lee", position: "Sales Executive", department: "Sales", avatar: "https://img.daisyui.com/images/profile/demo/10@94.webp", country: "Netherlands" },
@@ -42,8 +43,8 @@ const EmployeeList = () => {
 
   return (
     <div className="p-4 w-full">
-      <div className="sticky top-0 bg-white shadow-md z-10 flex items-center justify-between p-4 rounded-lg">
-        <h1 className="text-2xl text-gray-800">Employees</h1>
+      <div className="sticky top-0 bg-white shadow-md z-10 flex md:flex-row flex-col items-center justify-between p-4 rounded-lg">
+        <h1 className="text-2xl text-gray-800 mb-4 md:mb-0">Employees</h1>
         <SearchFilter onFilterChange={handleFilterChange} />
       </div>
       <div className="overflow-x-auto mt-4">

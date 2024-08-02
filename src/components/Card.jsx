@@ -43,13 +43,25 @@ const Card = ({
     switch (type) {
       case "circular":
         return (
-          <div className="h-48 w-60 flex justify-center">
+          <div className="h-36 w-60 flex justify-center">
             <Doughnut
               data={data}
               options={{
                 rotation: 270,
                 circumference: 180,
-                cutout: "80%", // Adjust this to control the thickness
+                cutout: "80%",
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: 'bottom', // Place the legend at the bottom
+                    labels: {
+                      boxWidth: 12, // Adjust the size of the legend box
+                      padding: 10, // Adjust spacing between legend items
+                    },
+                    align: 'center', // Align legend items in a row
+                    
+                  },
+                }, // Adjust this to control the thickness
               }}
             />
           </div>
@@ -62,7 +74,7 @@ const Card = ({
   };
 
   return (
-    <div className="card bg-white min-w-44 shadow-xl p-4">
+    <div className="card bg-white min-w-40  p-4 border-gray-300 border-[1px]">
       {icon}
       <p className="card-title text-sm font-bold mt-4">{title}</p>
       {showChart ? (

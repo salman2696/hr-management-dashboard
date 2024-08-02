@@ -10,8 +10,8 @@ function App() {
     <Router>
       <div className="flex bg-white">
         <Sidebar />
-        <div className="flex-1 flex flex-col">
-          <main className="flex-1 p-4 ml-64 rounded-lg min-h-screen">
+        <div className="flex-1 flex flex-col bg-gray-200 ml-14 lg:ml-12 p-4">
+          <main className="flex-1 p-4 lg:ml-52 rounded-lg min-h-screen bg-white">
             <Routes>
               <Route path="/" element={<DashboardPage />} />
               <Route path="/employees" element={<EmployeePage />} />
