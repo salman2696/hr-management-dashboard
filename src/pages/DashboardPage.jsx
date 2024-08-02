@@ -3,7 +3,7 @@ import React from 'react';
 import Dashboard from '../components/Dashboard';
 
 const DashboardPage = () => (
-  <div className="dashboard-page flex flex-row  bg-gray-200">
+  <div className="dashboard-page flex flex-row">
       <Dashboard />
   </div>
 );

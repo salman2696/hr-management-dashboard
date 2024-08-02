@@ -98,12 +98,18 @@ const Dashboard = () => {
         title="Complete Task Target"
         type="circular"
         data={taskTargetData}
+        showChart= {true}
+        showPercentageChange = {false}
+        showPeriod = {false}
       />
       <Card
         icon={<MdAssignment className="text-3xl text-gray-500" />}
         title="Task Count"
         type="bar"
         data={taskCountData}
+        showChart= {true}
+        showPercentageChange = {false}
+        showPeriod = {false}
       />
       <TopEmployeesCard employees={employees} />
     </div>

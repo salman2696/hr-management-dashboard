@@ -42,7 +42,7 @@ const EmployeeList = () => {
 
   return (
     <div className="p-4 w-full">
-      <div className="sticky top-20 bg-white shadow-md z-10 flex items-center justify-between p-4 rounded-lg">
+      <div className="sticky top-0 bg-white shadow-md z-10 flex items-center justify-between p-4 rounded-lg">
         <h1 className="text-2xl text-gray-800">Employees</h1>
         <SearchFilter onFilterChange={handleFilterChange} />
       </div>

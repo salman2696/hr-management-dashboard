@@ -8,11 +8,10 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <Router>
-      <div className="flex">
+      <div className="flex bg-white">
         <Sidebar />
         <div className="flex-1 flex flex-col">
-          <Navbar />
-          <main className="flex-1 p-4 bg-gray-200 ml-64 mt-14 min-h-screen">
+          <main className="flex-1 p-4 ml-64 rounded-lg min-h-screen">
             <Routes>
               <Route path="/" element={<DashboardPage />} />
               <Route path="/employees" element={<EmployeePage />} />
