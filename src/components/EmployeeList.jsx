@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import SearchFilter from "./SearchFilter";
-import { ThemeContext } from "./ThemeContext"; // Import ThemeContext
+import { ThemeContext } from "./ThemeContext";
+import EmployeeModal from "./EmployeeModal";
 
-// Sample employee data
+// Sample employee data (same as before)
 const employees = [
   {
     id: 1,
@@ -11,6 +12,12 @@ const employees = [
     department: "IT",
     avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp",
     country: "United States",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 2,
@@ -19,6 +26,12 @@ const employees = [
     department: "Marketing",
     avatar: "https://img.daisyui.com/images/profile/demo/3@94.webp",
     country: "Canada",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 3,
@@ -27,6 +40,12 @@ const employees = [
     department: "Design",
     avatar: "https://img.daisyui.com/images/profile/demo/4@94.webp",
     country: "United Kingdom",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 4,
@@ -35,6 +54,12 @@ const employees = [
     department: "Engineering",
     avatar: "https://img.daisyui.com/images/profile/demo/5@94.webp",
     country: "Australia",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   // Add more employees as needed, up to 20
   {
@@ -44,6 +69,12 @@ const employees = [
     department: "Data",
     avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp",
     country: "Germany",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 6,
@@ -52,6 +83,12 @@ const employees = [
     department: "Development",
     avatar: "https://img.daisyui.com/images/profile/demo/3@94.webp",
     country: "France",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 7,
@@ -60,6 +97,12 @@ const employees = [
     department: "HR",
     avatar: "https://img.daisyui.com/images/profile/demo/8@94.webp",
     country: "Italy",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 8,
@@ -68,6 +111,12 @@ const employees = [
     department: "Operations",
     avatar: "https://img.daisyui.com/images/profile/demo/9@94.webp",
     country: "Spain",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 9,
@@ -76,6 +125,12 @@ const employees = [
     department: "Sales",
     avatar: "https://img.daisyui.com/images/profile/demo/10@94.webp",
     country: "Netherlands",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 10,
@@ -84,92 +139,19 @@ const employees = [
     department: "Content",
     avatar: "https://img.daisyui.com/images/profile/demo/11@94.webp",
     country: "Sweden",
-  },
-  {
-    id: 11,
-    name: "Ian Nelson",
-    position: "Network Engineer",
-    department: "IT",
-    avatar: "https://img.daisyui.com/images/profile/demo/12@94.webp",
-    country: "Norway",
-  },
-  {
-    id: 12,
-    name: "Jack O'Connor",
-    position: "Customer Support",
-    department: "Support",
-    avatar: "https://img.daisyui.com/images/profile/demo/13@94.webp",
-    country: "Denmark",
-  },
-  {
-    id: 13,
-    name: "Karen Parker",
-    position: "Business Analyst",
-    department: "Analysis",
-    avatar: "https://img.daisyui.com/images/profile/demo/14@94.webp",
-    country: "Switzerland",
-  },
-  {
-    id: 14,
-    name: "Leo Quinn",
-    position: "SEO Specialist",
-    department: "Marketing",
-    avatar: "https://img.daisyui.com/images/profile/demo/15@94.webp",
-    country: "Austria",
-  },
-  {
-    id: 15,
-    name: "Mia Roberts",
-    position: "Graphic Designer",
-    department: "Design",
-    avatar: "https://img.daisyui.com/images/profile/demo/16@94.webp",
-    country: "Belgium",
-  },
-  {
-    id: 16,
-    name: "Noah Scott",
-    position: "Database Administrator",
-    department: "Data",
-    avatar: "https://img.daisyui.com/images/profile/demo/17@94.webp",
-    country: "Portugal",
-  },
-  {
-    id: 17,
-    name: "Olivia Taylor",
-    position: "Social Media Manager",
-    department: "Marketing",
-    avatar: "https://img.daisyui.com/images/profile/demo/18@94.webp",
-    country: "Ireland",
-  },
-  {
-    id: 18,
-    name: "Paul Upton",
-    position: "DevOps Engineer",
-    department: "Engineering",
-    avatar: "https://img.daisyui.com/images/profile/demo/19@94.webp",
-    country: "Finland",
-  },
-  {
-    id: 19,
-    name: "Quinn Vance",
-    position: "Product Designer",
-    department: "Design",
-    avatar: "https://img.daisyui.com/images/profile/demo/20@94.webp",
-    country: "Poland",
-  },
-  {
-    id: 20,
-    name: "Riley Walker",
-    position: "Market Researcher",
-    department: "Marketing",
-    avatar: "https://img.daisyui.com/images/profile/demo/21@94.webp",
-    country: "Czech Republic",
+    email: "john.doe@example.com",
+    address: "123 Elm Street, Springfield, IL",
+    mobile: "+1 555-123-4567",
+    dateOfJoining: "2020-01-15",
+    salary: "$80,000",
+    equipmentsIssued: ["Laptop", "Desktop"],
   },
 ];
 
 const EmployeeList = () => {
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
-  const { theme } = useContext(ThemeContext); // Get the current theme from context
+  const [selectedEmployee, setSelectedEmployee] = useState(null); // State for selected employee
+  const { theme } = useContext(ThemeContext);
 
   const handleFilterChange = ({ searchTerm, position, department }) => {
     const filtered = employees.filter((employee) => {
@@ -183,6 +165,14 @@ const EmployeeList = () => {
       return matchesName && matchesPosition && matchesDepartment;
     });
     setFilteredEmployees(filtered);
+  };
+
+  const handleViewClick = (employee) => {
+    setSelectedEmployee(employee);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedEmployee(null);
   };
 
   return (
@@ -255,13 +245,21 @@ const EmployeeList = () => {
                 <td className="py-2 px-4 border-b">{employee.position}</td>
                 <td className="py-2 px-4 border-b">{employee.department}</td>
                 <td className="py-2 px-4 border-b">
-                  <button className="btn btn-ghost btn-xs">View</button>
+                  <button
+                    onClick={() => handleViewClick(employee)}
+                    className="btn btn-ghost btn-xs"
+                  >
+                    View
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {selectedEmployee && (
+        <EmployeeModal employee={selectedEmployee} onClose={handleCloseModal} />
+      )}
     </div>
   );
 };

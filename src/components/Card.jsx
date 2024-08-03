@@ -92,7 +92,7 @@ const Card = ({
 
   return (
     <div
-      className={`card p-4 border-[1px] lg:min-w-44  ${
+      className={`card p-4 border-[1px] lg:min-w-44 lg:w-auto w-[47%]  ${
         theme === "dark"
           ? "bg-gray-800 border-gray-700 text-white"
           : "bg-white border-gray-300 text-gray-500"
