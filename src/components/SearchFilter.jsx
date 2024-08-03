@@ -1,27 +1,28 @@
-// src/components/SearchFilter.jsx
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "./ThemeContext"; // Import ThemeContext
 
 const SearchFilter = ({ onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [position, setPosition] = useState("");
   const [department, setDepartment] = useState("");
+  const { theme } = useContext(ThemeContext); // Get the current theme from context
 
   const handleSearch = () => {
     onFilterChange({ searchTerm, position, department });
   };
 
   return (
-    <div className="flex md:flex-row flex-col gap-2 items-center w-full md:w-3/5">
+    <div className={`flex md:flex-row flex-col gap-2 items-center w-full md:w-3/5 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
       <input
         type="text"
         placeholder="Search by Name"
-        className="input input-bordered bg-white text-gray-700 w-full text-sm"
+        className={`input input-bordered ${theme === 'dark' ? 'bg-gray-700 text-gray-300' : 'bg-white text-gray-700'} w-full text-sm`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={(e) => e.key === "Enter" && handleSearch()}
       />
       <select
-        className="select select-bordered bg-white text-gray-700 w-full text-xs"
+        className={`select select-bordered ${theme === 'dark' ? 'bg-gray-700 text-gray-300' : 'bg-white text-gray-700'} w-full text-xs`}
         value={position}
         onChange={(e) => setPosition(e.target.value)}
       >
@@ -31,7 +32,7 @@ const SearchFilter = ({ onFilterChange }) => {
         {/* Add more positions as needed */}
       </select>
       <select
-        className="select select-bordered bg-white text-gray-700 w-full text-xs"
+        className={`select select-bordered ${theme === 'dark' ? 'bg-gray-700 text-gray-300' : 'bg-white text-gray-700'} w-full text-xs`}
         value={department}
         onChange={(e) => setDepartment(e.target.value)}
       >
@@ -41,7 +42,7 @@ const SearchFilter = ({ onFilterChange }) => {
         {/* Add more departments as needed */}
       </select>
       <button
-        className="btn bg-red-300 text-white hover:bg-red-400 border-transparent hover:border-transparent  md:w-28 w-full"
+        className={`btn ${theme === 'dark' ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-red-300 text-white hover:bg-red-400'} border-transparent md:w-28 w-full`}
         onClick={handleSearch}
       >
         Search

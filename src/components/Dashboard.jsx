@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "./Card";
 import TopEmployeesCard from "./TopEmployeesCard";
 import {
@@ -8,6 +8,7 @@ import {
   MdAccessTime,
   MdAssignment,
 } from "react-icons/md";
+import { ThemeContext } from "./ThemeContext";
 
 const taskTargetData = {
   labels: ["Completed", "Remaining"],
@@ -59,10 +60,16 @@ const employees = [
 ];
 
 const Dashboard = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="flex flex-wrap gap-4">
+    <div
+      className={`flex flex-wrap gap-4 p-4 rounded-lg ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-500"
+      }`}
+    >
       <Card
-        icon={<MdPeople className="text-3xl text-gray-500" />}
+        icon={<MdPeople />}
         title="Total Employees"
         value="2,0987"
         description="Task"
@@ -70,7 +77,7 @@ const Dashboard = () => {
         period="This month"
       />
       <Card
-        icon={<MdTrendingUp className="text-3xl text-gray-500" />}
+        icon={<MdTrendingUp />}
         title="Revenue Growth"
         value="$10,287"
         description="Compared last month"
@@ -78,7 +85,7 @@ const Dashboard = () => {
         period="This month"
       />
       <Card
-        icon={<MdAttachMoney className="text-3xl text-gray-500" />}
+        icon={<MdAttachMoney />}
         title="Total Donations"
         value="$5,678"
         description="Total received"
@@ -86,7 +93,7 @@ const Dashboard = () => {
         period="This month"
       />
       <Card
-        icon={<MdAccessTime className="text-3xl text-gray-500" />}
+        icon={<MdAccessTime />}
         title="Working Hours"
         value="1,234 hrs"
         description="Total worked hours"
@@ -94,24 +101,24 @@ const Dashboard = () => {
         period="This month"
       />
       <Card
-        icon={<MdAssignment className="text-3xl text-gray-500" />}
+        icon={<MdAssignment />}
         title="Complete Task Target"
         type="circular"
         data={taskTargetData}
         showChart={true}
         showPercentageChange={false}
         showPeriod={false}
-        chartClassName="min-w-full"
+        chartClassName="min-w-full lg:min-w-64"
       />
       <Card
-        icon={<MdAssignment className="text-3xl text-gray-500" />}
+        icon={<MdAssignment />}
         title="Task Count"
         type="bar"
         data={taskCountData}
         showChart={true}
         showPercentageChange={false}
         showPeriod={false}
-        chartClassName="min-w-full md:min-w-80"
+        chartClassName="min-w-full lg:min-w-80"
       />
       <TopEmployeesCard employees={employees} />
     </div>

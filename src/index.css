@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Light Theme */
+:root {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f0f0f0;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+  }
+  
+  /* Dark Theme */
+  .dark {
+    --primary-bg: #1a202c;
+    --secondary-bg: #2d3748;
+    --text-primary: #e2e8f0;
+    --text-secondary: #cbd5e0;
+  }
+  
+  /* Apply theme variables to body */
+  body {
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+  }
+  

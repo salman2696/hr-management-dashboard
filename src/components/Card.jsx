@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
@@ -11,6 +11,7 @@ import {
   Legend,
   ArcElement,
 } from "chart.js";
+import { ThemeContext } from "./ThemeContext";
 
 ChartJS.register(
   CategoryScale,
@@ -36,15 +37,31 @@ const Card = ({
   showPercentageChange = true,
   showPeriod = true,
   showChart = false,
-  chartClassName
+  chartClassName,
 }) => {
+  const { theme } = useContext(ThemeContext);
+
   const renderChart = () => {
     if (!showChart) return null;
+
+    const chartOptions = {
+      plugins: {
+        legend: {
+          display: true,
+          position: "bottom",
+          labels: {
+            boxWidth: 12,
+            padding: 10,
+          },
+          align: "center",
+        },
+      },
+    };
 
     switch (type) {
       case "circular":
         return (
-          <div className=" flex justify-center">
+          <div className="flex justify-center h-40 md:w-56">
             <Doughnut
               data={data}
               options={{
@@ -67,14 +84,20 @@ const Card = ({
           </div>
         );
       case "bar":
-        return <Bar data={data} />;
+        return <Bar data={data} options={chartOptions} />;
       default:
         return null;
     }
   };
 
   return (
-    <div className={`card bg-white md:min-w-44 min-w-36 max-w-64 p-4 border-gray-300 border-[1px] ${chartClassName}`}>
+    <div
+      className={`card p-4 border-[1px] lg:min-w-44 sm:min-w-56 ${
+        theme === "dark"
+          ? "bg-gray-800 border-gray-700 text-white"
+          : "bg-white border-gray-300 text-gray-500"
+      } ${chartClassName}`}
+    >
       {icon}
       <p className="card-title text-sm font-bold mt-4">{title}</p>
       {showChart ? (
@@ -83,9 +106,21 @@ const Card = ({
         <>
           {showValue && (
             <div className="flex flex-col gap-1 my-2">
-              <h1 className="text-2xl font-bold text-gray-800">{value}</h1>
+              <h1
+                className={`text-2xl font-bold ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-800"
+                }`}
+              >
+                {value}
+              </h1>
               {showDescription && (
-                <p className="text-gray-600 text-[10px] md:text-xs">{description}</p>
+                <p
+                  className={`text-[10px] md:text-xs ${
+                    theme === "dark" ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  {description}
+                </p>
               )}
             </div>
           )}
@@ -95,16 +130,24 @@ const Card = ({
         <div className="flex flex-row gap-1 mt-5 text-sm">
           {showPercentageChange && (
             <div
-              className={`text-green-500 ${
+              className={`text-sm ${
                 percentageChange && percentageChange.startsWith("-")
                   ? "text-red-500"
-                  : ""
+                  : "text-green-500"
               }`}
             >
               {percentageChange}
             </div>
           )}
-          {showPeriod && <div className="stat-title">{period}</div>}
+          {showPeriod && (
+            <div
+              className={`stat-title ${
+                theme === "dark" ? "text-gray-400" : "text-gray-800"
+              }`}
+            >
+              {period}
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -1,7 +1,6 @@
-// src/components/EmployeeList.jsx
-import React,  { useState } from "react";
+import React, { useState, useContext } from "react";
 import SearchFilter from "./SearchFilter";
-
+import { ThemeContext } from "./ThemeContext"; // Import ThemeContext
 
 // Sample employee data
 const employees = [
@@ -30,6 +29,7 @@ const employees = [
 
 const EmployeeList = () => {
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
+  const { theme } = useContext(ThemeContext); // Get the current theme from context
 
   const handleFilterChange = ({ searchTerm, position, department }) => {
     const filtered = employees.filter((employee) => {
@@ -42,14 +42,20 @@ const EmployeeList = () => {
   };
 
   return (
-    <div className="md:p-4 w-full">
-      <div className="sticky top-0 bg-white shadow-md z-10 flex md:flex-row flex-col items-center justify-between p-4 rounded-lg">
-        <h1 className="text-2xl text-gray-800 mb-4 md:mb-0">Employees</h1>
+    <div className={`gap-4 p-4 rounded-lg w-full ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className={`shadow-md z-10 flex md:flex-row flex-col items-center justify-between p-4 rounded-lg ${
+        theme === 'dark' ? 'bg-gray-900 text-gray-200' : 'bg-white text-gray-800'
+      }`}>
+        <h1 className="text-2xl mb-4 md:mb-0">Employees</h1>
         <SearchFilter onFilterChange={handleFilterChange} />
       </div>
-      <div className="overflow-x-auto mt-4">
-        <table className="table w-full bg-white border border-gray-200">
-          <thead className="text-gray-700">
+      <div className={`overflow-x-auto mt-4 ${
+        theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+      }`}>
+        <table className={`table w-full border border-gray-200 ${
+          theme === 'dark' ? 'bg-gray-900 text-gray-300' : 'bg-white text-gray-800'
+        }`}>
+          <thead className={`${theme === 'dark' ? 'bg-gray-800 text-gray-300'  : 'text-gray-700'}`}>
             <tr>
               <th className="py-2 px-4 border-b">ID</th>
               <th className="py-2 px-4 border-b">Name</th>
@@ -58,7 +64,7 @@ const EmployeeList = () => {
               <th className="py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
-          <tbody className="text-gray-500">
+          <tbody className={`${theme === 'dark' ? 'bg-gray-800 text-gray-300'  : 'text-gray-700'}`}>
             {filteredEmployees.map((employee) => (
               <tr key={employee.id}>
                 <td className="py-2 px-4 border-b">{employee.id}</td>
