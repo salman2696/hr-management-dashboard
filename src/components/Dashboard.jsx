@@ -36,23 +36,23 @@ const taskCountData = {
 
 const employees = [
   {
-    name: 'John Doe',
-    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-    position: 'Software Engineer',
+    name: "John Doe",
+    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+    position: "Software Engineer",
     tasksDone: 120,
     pointsEarned: 450,
   },
   {
-    name: 'Jane Smith',
-    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
-    position: 'Product Manager',
+    name: "Jane Smith",
+    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+    position: "Product Manager",
     tasksDone: 95,
     pointsEarned: 380,
   },
   {
-    name: 'Emily Johnson',
-    avatar: 'https://randomuser.me/api/portraits/women/3.jpg',
-    position: 'UX Designer',
+    name: "Emily Johnson",
+    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
+    position: "UX Designer",
     tasksDone: 85,
     pointsEarned: 340,
   },
@@ -73,7 +73,7 @@ const Dashboard = () => {
         icon={<MdTrendingUp className="text-3xl text-gray-500" />}
         title="Revenue Growth"
         value="$10,287"
-        description="Compared to last month"
+        description="Compared last month"
         percentageChange="+12%"
         period="This month"
       />
@@ -98,18 +98,20 @@ const Dashboard = () => {
         title="Complete Task Target"
         type="circular"
         data={taskTargetData}
-        showChart= {true}
-        showPercentageChange = {false}
-        showPeriod = {false}
+        showChart={true}
+        showPercentageChange={false}
+        showPeriod={false}
+        chartClassName="min-w-full"
       />
       <Card
         icon={<MdAssignment className="text-3xl text-gray-500" />}
         title="Task Count"
         type="bar"
         data={taskCountData}
-        showChart= {true}
-        showPercentageChange = {false}
-        showPeriod = {false}
+        showChart={true}
+        showPercentageChange={false}
+        showPeriod={false}
+        chartClassName="min-w-full md:min-w-80"
       />
       <TopEmployeesCard employees={employees} />
     </div>

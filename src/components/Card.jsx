@@ -36,6 +36,7 @@ const Card = ({
   showPercentageChange = true,
   showPeriod = true,
   showChart = false,
+  chartClassName
 }) => {
   const renderChart = () => {
     if (!showChart) return null;
@@ -43,7 +44,7 @@ const Card = ({
     switch (type) {
       case "circular":
         return (
-          <div className="h-36 w-60 flex justify-center">
+          <div className=" flex justify-center">
             <Doughnut
               data={data}
               options={{
@@ -53,13 +54,12 @@ const Card = ({
                 plugins: {
                   legend: {
                     display: true,
-                    position: 'bottom', // Place the legend at the bottom
+                    position: "bottom", // Place the legend at the bottom
                     labels: {
                       boxWidth: 12, // Adjust the size of the legend box
                       padding: 10, // Adjust spacing between legend items
                     },
-                    align: 'center', // Align legend items in a row
-                    
+                    align: "center", // Align legend items in a row
                   },
                 }, // Adjust this to control the thickness
               }}
@@ -74,18 +74,18 @@ const Card = ({
   };
 
   return (
-    <div className="card bg-white min-w-40  p-4 border-gray-300 border-[1px]">
+    <div className={`card bg-white md:min-w-44 min-w-36 max-w-64 p-4 border-gray-300 border-[1px] ${chartClassName}`}>
       {icon}
       <p className="card-title text-sm font-bold mt-4">{title}</p>
       {showChart ? (
-        <div className="mt-4">{renderChart()}</div>
+        <div className="mt-2">{renderChart()}</div>
       ) : (
         <>
           {showValue && (
             <div className="flex flex-col gap-1 my-2">
               <h1 className="text-2xl font-bold text-gray-800">{value}</h1>
               {showDescription && (
-                <p className="text-gray-600 text-xs">{description}</p>
+                <p className="text-gray-600 text-[10px] md:text-xs">{description}</p>
               )}
             </div>
           )}
