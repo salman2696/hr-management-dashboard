@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from './ThemeContext'; // Adjust the path as needed
+import React, { useContext } from "react";
+import { ThemeContext } from "./ThemeContext"; // Adjust the path as needed
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -9,7 +9,7 @@ const ThemeToggle = () => {
       <label className="grid cursor-pointer place-items-center">
         <input
           type="checkbox"
-          checked={theme === 'dark'}
+          checked={theme === "dark"}
           onChange={toggleTheme}
           className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1"
         />

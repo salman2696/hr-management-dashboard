@@ -1,5 +1,5 @@
 // src/components/LeaveManagement.jsx
-import React from 'react';
+import React from "react";
 
 const LeaveManagement = () => (
   <div className="leave-management">

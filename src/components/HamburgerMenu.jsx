@@ -17,7 +17,9 @@ const HamburgerMenu = ({ onFilterChange }) => {
         {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
       </button>
       <div
-        className={`fixed top-0 right-0 w-4/5 h-full bg-white shadow-lg z-40 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 w-4/5 h-full bg-white shadow-lg z-40 transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="p-4">
           <SearchFilter onFilterChange={onFilterChange} />

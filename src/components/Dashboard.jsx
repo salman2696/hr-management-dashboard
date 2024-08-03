@@ -108,7 +108,7 @@ const Dashboard = () => {
         showChart={true}
         showPercentageChange={false}
         showPeriod={false}
-        chartClassName="min-w-full lg:min-w-64"
+        chartClassName="min-w-full lg:min-w-72"
       />
       <Card
         icon={<MdAssignment />}

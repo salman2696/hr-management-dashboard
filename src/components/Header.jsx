@@ -21,7 +21,9 @@ const Header = () => {
     <div>
       <nav
         className={`fixed top-0 z-10 w-full flex items-center justify-between p-4 ${
-          theme === 'dark' ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-black'
+          theme === "dark"
+            ? "bg-gray-800 text-gray-300"
+            : "bg-gray-200 text-black"
         }`}
       >
         <button

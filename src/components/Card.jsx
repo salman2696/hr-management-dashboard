@@ -61,7 +61,7 @@ const Card = ({
     switch (type) {
       case "circular":
         return (
-          <div className="flex justify-center h-40 md:w-56">
+          <div className="flex justify-center h-40 lg:w-56">
             <Doughnut
               data={data}
               options={{
@@ -92,7 +92,7 @@ const Card = ({
 
   return (
     <div
-      className={`card p-4 border-[1px] lg:min-w-44 sm:min-w-56 ${
+      className={`card p-4 border-[1px] lg:min-w-44  ${
         theme === "dark"
           ? "bg-gray-800 border-gray-700 text-white"
           : "bg-white border-gray-300 text-gray-500"
