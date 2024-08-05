@@ -43,7 +43,7 @@ const TopEmployeesCard = ({ employees }) => {
             <p
               className={`text-sm ${
                 theme === "dark" ? "text-gray-400" : "text-gray-600"
-              } mt-1`}
+              }`}
             >
               {employee.tasksDone} tasks done
             </p>
