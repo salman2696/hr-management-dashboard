@@ -67,7 +67,7 @@ const Dashboard = () => {
       className={`flex flex-wrap gap-4 p-4 rounded-lg ${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white     text-gray-500"
       }`}
-    >
+    >   
       <Card
         icon={<MdPeople />}
         title="Total Employees"
@@ -110,6 +110,7 @@ const Dashboard = () => {
         showPeriod={false}
         chartClassName="min-w-full lg:min-w-72"
       />
+
       <Card
         icon={<MdAssignment />}
         title="Task Count"
