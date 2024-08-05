@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import SearchFilter from "./SearchFilter";
 import { ThemeContext } from "./ThemeContext";
-import EmployeeModal from "./EmployeeModal";
 
-// Sample employee data 
+// Sample employee data
 const employees = [
   {
     id: 1,
@@ -12,12 +12,6 @@ const employees = [
     department: "IT",
     avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp",
     country: "United States",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 2,
@@ -26,12 +20,6 @@ const employees = [
     department: "Marketing",
     avatar: "https://img.daisyui.com/images/profile/demo/3@94.webp",
     country: "Canada",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 3,
@@ -40,12 +28,6 @@ const employees = [
     department: "Design",
     avatar: "https://img.daisyui.com/images/profile/demo/4@94.webp",
     country: "United Kingdom",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 4,
@@ -54,12 +36,6 @@ const employees = [
     department: "Engineering",
     avatar: "https://img.daisyui.com/images/profile/demo/5@94.webp",
     country: "Australia",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   // Add more employees as needed, up to 20
   {
@@ -69,12 +45,6 @@ const employees = [
     department: "Data",
     avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp",
     country: "Germany",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 6,
@@ -83,12 +53,6 @@ const employees = [
     department: "Development",
     avatar: "https://img.daisyui.com/images/profile/demo/3@94.webp",
     country: "France",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 7,
@@ -97,12 +61,6 @@ const employees = [
     department: "HR",
     avatar: "https://img.daisyui.com/images/profile/demo/8@94.webp",
     country: "Italy",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 8,
@@ -111,12 +69,6 @@ const employees = [
     department: "Operations",
     avatar: "https://img.daisyui.com/images/profile/demo/9@94.webp",
     country: "Spain",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 9,
@@ -125,12 +77,6 @@ const employees = [
     department: "Sales",
     avatar: "https://img.daisyui.com/images/profile/demo/10@94.webp",
     country: "Netherlands",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
   {
     id: 10,
@@ -139,19 +85,13 @@ const employees = [
     department: "Content",
     avatar: "https://img.daisyui.com/images/profile/demo/11@94.webp",
     country: "Sweden",
-    email: "john.doe@example.com",
-    address: "123 Elm Street, Springfield, IL",
-    mobile: "+1 555-123-4567",
-    dateOfJoining: "2020-01-15",
-    salary: "$80,000",
-    equipmentsIssued: ["Laptop", "Desktop"],
   },
 ];
 
 const EmployeeList = () => {
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
-  const [selectedEmployee, setSelectedEmployee] = useState(null); // State for selected employee
   const { theme } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   const handleFilterChange = ({ searchTerm, position, department }) => {
     const filtered = employees.filter((employee) => {
@@ -168,14 +108,11 @@ const EmployeeList = () => {
   };
 
   const handleViewClick = (employee) => {
-    setSelectedEmployee(employee);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedEmployee(null);
+    navigate(`/employee-details/${employee.id}`);
   };
 
   return (
+   
     <div
       className={`gap-4 p-4 rounded-lg w-full ${
         theme === "dark" ? "bg-gray-900" : "bg-white"
@@ -257,9 +194,6 @@ const EmployeeList = () => {
           </tbody>
         </table>
       </div>
-      {selectedEmployee && (
-        <EmployeeModal employee={selectedEmployee} onClose={handleCloseModal} />
-      )}
     </div>
   );
 };

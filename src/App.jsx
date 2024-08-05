@@ -4,6 +4,8 @@ import DashboardPage from "./pages/DashboardPage";
 import EmployeePage from "./pages/EmployeePage";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
+import EmployeeDetails from "./components/EmployeeDetails";
+import Payroll from "./components/Payroll";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/employees" element={<EmployeePage />} />
+        <Route path="/employee-details/:id" element={<EmployeeDetails />} />
+        <Route path="/payroll/:id" element={<Payroll />} />
       </Routes>
     </Router>
   );

@@ -1,15 +1,16 @@
-import React, { useState, useContext } from "react";
-import { ThemeContext } from "./ThemeContext"; // Import ThemeContext
+import React, { useState, useContext, useEffect } from "react";
+import { ThemeContext } from "./ThemeContext";
 
 const SearchFilter = ({ onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [position, setPosition] = useState("");
   const [department, setDepartment] = useState("");
-  const { theme } = useContext(ThemeContext); // Get the current theme from context
+  const { theme } = useContext(ThemeContext);
 
-  const handleSearch = () => {
+  // Call onFilterChange whenever searchTerm, position, or department changes
+  useEffect(() => {
     onFilterChange({ searchTerm, position, department });
-  };
+  }, [searchTerm, position, department]);
 
   return (
     <div
@@ -27,7 +28,6 @@ const SearchFilter = ({ onFilterChange }) => {
         } w-full text-sm`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyPress={(e) => e.key === "Enter" && handleSearch()}
       />
       <select
         className={`select select-bordered ${
@@ -57,16 +57,6 @@ const SearchFilter = ({ onFilterChange }) => {
         <option value="Marketing">Marketing</option>
         {/* Add more departments as needed */}
       </select>
-      <button
-        className={`btn ${
-          theme === "dark"
-            ? "bg-red-500 text-white hover:bg-red-600"
-            : "bg-red-300 text-white hover:bg-red-400"
-        } border-transparent md:w-28 w-full`}
-        onClick={handleSearch}
-      >
-        Search
-      </button>
     </div>
   );
 };
