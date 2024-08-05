@@ -213,7 +213,7 @@ const EmployeeList = () => {
               <th className="py-2 px-4 border-b">Name</th>
               <th className="py-2 px-4 border-b">Position</th>
               <th className="py-2 px-4 border-b">Department</th>
-              <th className="py-2 px-4 border-b">Actions</th>
+              <th className="py-2 px-4 border-b">Details</th>
             </tr>
           </thead>
           <tbody

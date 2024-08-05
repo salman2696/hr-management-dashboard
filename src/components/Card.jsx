@@ -92,14 +92,16 @@ const Card = ({
 
   return (
     <div
-      className={`card p-4  border-[1px] lg:min-w-44 lg:w-auto w-[47%]  ${
+      className={`card p-4  border-[1px] lg:min-w-44 lg:w-auto w-[47%] justify-between  ${
         theme === "dark"
           ? "bg-gray-800 border-gray-700 text-white"
           : "bg-white border-gray-300 text-gray-500"
       } ${chartClassName}`}
     >
+      <div>
       {icon}
       <p className="card-title text-sm font-bold mt-4">{title}</p>
+      </div>
       {showChart ? (
         <div className="mt-2">{renderChart()}</div>
       ) : (
