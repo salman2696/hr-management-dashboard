@@ -3,7 +3,7 @@ import SearchFilter from "./SearchFilter";
 import { ThemeContext } from "./ThemeContext";
 import EmployeeModal from "./EmployeeModal";
 
-// Sample employee data (same as before)
+// Sample employee data 
 const employees = [
   {
     id: 1,

@@ -20,7 +20,7 @@ const Sidebar = ({ isOpen, onMenuItemCLick }) => {
       } lg:translate-x-0 ${
         theme === "dark"
           ? "bg-gray-800 text-gray-300"
-          : "bg-gray-200 text-gray-800"
+          : "bg-[#f6f7f9] text-gray-800"
       }`}
     >
       <ul className="mt-4">

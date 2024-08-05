@@ -64,8 +64,8 @@ const Dashboard = () => {
 
   return (
     <div
-      className={`flex flex-wrap gap-4 p-4 rounded-lg ${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-white     text-gray-500"
+      className={`flex flex-wrap min-h-screen gap-4 p-4 rounded-xl ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-500"
       }`}
     >   
       <Card

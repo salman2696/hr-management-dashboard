@@ -11,7 +11,7 @@ const EmployeePage = () => {
       className={`min-h-screen lg:ml-52  p-4 mt-16 ${
         theme === "dark"
           ? "bg-gray-800 text-gray-300"
-          : "bg-gray-200 text-black"
+          : "bg-[#f6f7f9] text-black"
       }`}
     >
       <EmployeeList />
