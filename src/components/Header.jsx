@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <div>
       <nav
-        className={`fixed top-0 z-10 w-full flex items-center justify-between p-4 ${
+        className={`fixed top-0 z-10 lg:left-[20%] lg:w-[80%] w-full min-h-16 flex items-center justify-between p-4 ${
           theme === "dark"
             ? "bg-gray-800 text-gray-300"
             : "bg-[#f6f7f9] text-black"
@@ -32,9 +32,7 @@ const Header = () => {
         >
           {isSidebarOpen ? <FaTimes /> : <FaBars />}
         </button>
-        <div className="text-2xl">
-          <img className="h-10" alt="Description" src={logo} />
-        </div>
+        <h1>Hi Salman</h1>
         <ThemeToggle />
       </nav>
       <Sidebar isOpen={isSidebarOpen} onMenuItemCLick={isMenuItemClick} />

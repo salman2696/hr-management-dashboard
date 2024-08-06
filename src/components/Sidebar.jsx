@@ -8,6 +8,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../assets/images/E&E-logo.png";
 
 const Sidebar = ({ isOpen, onMenuItemCLick }) => {
   const { pathname } = useLocation(); // Hook to get the current route
@@ -15,7 +16,7 @@ const Sidebar = ({ isOpen, onMenuItemCLick }) => {
 
   return (
     <div
-      className={`sidebar fixed top-16 z-10 h-full p-4 transition-transform duration-300 ${
+      className={`sidebar fixed top-0 z-10 h-full lg:w-[20%] p-4 transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "-translate-x-64"
       } lg:translate-x-0 ${
         theme === "dark"
@@ -23,6 +24,9 @@ const Sidebar = ({ isOpen, onMenuItemCLick }) => {
           : "bg-[#f6f7f9] text-gray-800"
       }`}
     >
+      <div className="text-2xl">
+          <img className="h-10" alt="Description" src={logo} />
+        </div>
       <ul className="mt-4">
         <li
           className={`flex items-center mb-3 p-2 rounded-md transition duration-300 ${

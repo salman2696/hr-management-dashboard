@@ -59,13 +59,7 @@ const EmployeeDetails = () => {
   }
 
   return (
-    <div
-      className={`min-h-screen lg:ml-52 p-4 mt-16 ${
-        theme === "dark"
-          ? "bg-gray-800 text-gray-300"
-          : "bg-[#f6f7f9] text-black"
-      }`}
-    >
+    
       <div
         className={`p-6 rounded-xl ${
           theme === "dark"
@@ -173,7 +167,6 @@ const EmployeeDetails = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
