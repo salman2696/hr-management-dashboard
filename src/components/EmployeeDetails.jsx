@@ -61,7 +61,7 @@ const EmployeeDetails = () => {
   return (
     
       <div
-        className={`p-6 rounded-xl ${
+        className={`p-4 rounded-xl min-h-screen ${
           theme === "dark"
             ? "bg-gray-900 text-gray-200"
             : "bg-white text-gray-900"

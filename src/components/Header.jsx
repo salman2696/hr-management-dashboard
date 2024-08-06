@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
-import Sidebar from "./Sidebar"; // Import the Sidebar component
+import { FaBars } from "react-icons/fa";
+import Sidebar from "./Sidebar";
 import logo from "../assets/images/E&E-logo.png";
 import ThemeToggle from "./ThemeToggle";
-import { ThemeContext } from "./ThemeContext"; // Import ThemeContext
+import { ThemeContext } from "./ThemeContext";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { theme } = useContext(ThemeContext); // Get the current theme from context
+  const { theme } = useContext(ThemeContext);
 
   const handleToggleSidebar = (open) => {
     setIsSidebarOpen(open);
@@ -27,15 +27,22 @@ const Header = () => {
         }`}
       >
         <button
-          onClick={() => handleToggleSidebar(!isSidebarOpen)}
+          onClick={() => handleToggleSidebar(true)}
           className="text-2xl lg:hidden"
         >
-          {isSidebarOpen ? <FaTimes /> : <FaBars />}
+          <FaBars />
         </button>
-        <h1>Hi Salman</h1>
+        <h1 className="flex items-center space-x-3">
+          <img
+            src="https://img.daisyui.com/images/profile/demo/2@94.webp" // Replace with your actual avatar link
+            alt="Admin Avatar"
+            className="w-10 h-10 rounded-full"
+          />
+          <span>Hi Salman</span>
+        </h1>
         <ThemeToggle />
       </nav>
-      <Sidebar isOpen={isSidebarOpen} onMenuItemCLick={isMenuItemClick} />
+      <Sidebar isOpen={isSidebarOpen} onMenuItemClick={isMenuItemClick} />
     </div>
   );
 };
