@@ -6,7 +6,10 @@ import { ThemeContext } from "../components/ThemeContext"; // Import ThemeContex
 const EmployeePage = () => {
   const { theme } = useContext(ThemeContext);
 
-  return <EmployeeList />;
+  return (
+      <EmployeeList />
+   
+  );
 };
 
 export default EmployeePage;

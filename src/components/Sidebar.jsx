@@ -89,7 +89,7 @@ const Sidebar = ({ isOpen, onMenuItemClick }) => {
         </li>
         <li
           className={`flex items-center mb-3 p-2 rounded-md transition duration-300 ${
-            pathname === "/categories"
+            pathname === "/leave-management"
               ? theme === "dark"
                 ? "bg-gray-700"
                 : "bg-white"
@@ -100,17 +100,17 @@ const Sidebar = ({ isOpen, onMenuItemClick }) => {
         >
           <FaTags className="mr-2 text-xl" />
           <Link
-            to="/categories"
+            to="/leave-management"
             onClick={() => onMenuItemClick()}
             className={`flex-1 ${
-              pathname === "/categories"
+              pathname === "/leave-management"
                 ? theme === "dark"
                   ? "text-blue-400"
                   : "text-blue-500"
                 : ""
             }`}
           >
-            Category
+            Leave Management
           </Link>
         </li>
         <li

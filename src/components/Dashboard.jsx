@@ -64,64 +64,82 @@ const Dashboard = () => {
 
   return (
     <div
-      className={`flex flex-wrap min-h-screen gap-4 p-4 rounded-xl ${
+      className={`p-4 rounded-xl min-h-screen ${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-500"
       }`}
-    >   
-      <Card
-        icon={<MdPeople />}
-        title="Total Employees"
-        value="2,0987"
-        description="Task"
-        percentageChange="+86%"
-        period="This month"
-      />
-      <Card
-        icon={<MdTrendingUp />}
-        title="Revenue Growth"
-        value="$10,287"
-        description="Compared last month"
-        percentageChange="+12%"
-        period="This month"
-      />
-      <Card
-        icon={<MdAttachMoney />}
-        title="Total Donations"
-        value="$5,678"
-        description="Total received"
-        percentageChange="-8%"
-        period="This month"
-      />
-      <Card
-        icon={<MdAccessTime />}
-        title="Working Hours"
-        value="1,234 hrs"
-        description="Total worked hours"
-        percentageChange="+5%"
-        period="This month"
-      />
-      <Card
-        icon={<MdAssignment />}
-        title="Complete Task Target"
-        type="circular"
-        data={taskTargetData}
-        showChart={true}
-        showPercentageChange={false}
-        showPeriod={false}
-        chartClassName="min-w-full lg:min-w-72"
-      />
+    >
+      {/* Flex container for the first set of cards */}
+      <div className="flex flex-wrap gap-4 mb-4">
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+          <Card
+            icon={<MdPeople />}
+            title="Total Employees"
+            value="2,0987"
+            description="Task"
+            percentageChange="+86%"
+            period="This month"
+          />
+        </div>
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+          <Card
+            icon={<MdTrendingUp />}
+            title="Revenue Growth"
+            value="$10,287"
+            description="Compared last month"
+            percentageChange="+12%"
+            period="This month"
+          />
+        </div>
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+          <Card
+            icon={<MdAttachMoney />}
+            title="Total Donations"
+            value="$5,678"
+            description="Total received"
+            percentageChange="-8%"
+            period="This month"
+          />
+        </div>
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+          <Card
+            icon={<MdAccessTime />}
+            title="Working Hours"
+            value="1,234 hrs"
+            description="Total worked hours"
+            percentageChange="+5%"
+            period="This month"
+          />
+        </div>
+      </div>
 
-      <Card
-        icon={<MdAssignment />}
-        title="Task Count"
-        type="bar"
-        data={taskCountData}
-        showChart={true}
-        showPercentageChange={false}
-        showPeriod={false}
-        chartClassName="min-w-full lg:min-w-72 flex justify-between"
-      />
-      <TopEmployeesCard employees={employees} />
+      {/* Flex container for the task target, task count, and top employees */}
+      <div className="flex flex-wrap gap-4">
+        <div className="flex-1 min-w-[250px] lg:w-[25%]">
+          <Card
+            icon={<MdAssignment />}
+            title="Complete Task Target"
+            type="circular"
+            data={taskTargetData}
+            showChart={true}
+            showPercentageChange={false}
+            showPeriod={false}
+          />
+        </div>
+        <div className="flex-1 min-w-[250px] lg:w-[25%]">
+          <Card
+            icon={<MdAssignment />}
+            title="Task Count"
+            type="bar"
+            data={taskCountData}
+            showChart={true}
+            showPercentageChange={false}
+            showPeriod={false}
+          />
+        </div>
+        <div className="w-full min-w-[250px] lg:w-[50%]">
+          <TopEmployeesCard employees={employees} />
+        </div>
+      </div>
     </div>
   );
 };

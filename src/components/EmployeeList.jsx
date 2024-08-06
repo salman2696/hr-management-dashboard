@@ -112,7 +112,6 @@ const EmployeeList = () => {
   };
 
   return (
-   
     <div
       className={`gap-4 p-4 rounded-xl w-full ${
         theme === "dark" ? "bg-gray-900" : "bg-white"

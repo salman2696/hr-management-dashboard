@@ -5,6 +5,7 @@ import EmployeePage from "./pages/EmployeePage";
 import EmployeeDetails from "./components/EmployeeDetails";
 import Payroll from "./components/Payroll";
 import Layout from "./components/Layout";
+import LeaveManagement from "./components/LeaveManagement"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/employees" element={<EmployeePage />} />
         <Route path="/employee-details/:id" element={<EmployeeDetails />} />
         <Route path="/payroll/:id" element={<Payroll />} />
+        <Route path="/leave-management" element= {<LeaveManagement />} />
         </Route>
       </Routes>
     </Router>

@@ -37,7 +37,6 @@ const Card = ({
   showPercentageChange = true,
   showPeriod = true,
   showChart = false,
-  chartClassName,
 }) => {
   const { theme } = useContext(ThemeContext);
 
@@ -58,10 +57,12 @@ const Card = ({
       },
     };
 
+    const chartHeight = 210; // Fixed height for charts
+
     switch (type) {
       case "circular":
         return (
-          <div className="flex justify-center h-40 lg:w-56 ml-4">
+          <div className="flex justify-center" style={{ height: chartHeight }}>
             <Doughnut
               data={data}
               options={{
@@ -71,20 +72,25 @@ const Card = ({
                 plugins: {
                   legend: {
                     display: true,
-                    position: "bottom", // Place the legend at the bottom
+                    position: "bottom",
                     labels: {
-                      boxWidth: 12, // Adjust the size of the legend box
-                      padding: 10, // Adjust spacing between legend items
+                      boxWidth: 12,
+                      padding: 10,
                     },
-                    align: "center", // Align legend items in a row
+                    align: "center",
                   },
-                }, // Adjust this to control the thickness
+                },
               }}
+              height={chartHeight} // Apply height here if needed
             />
           </div>
         );
       case "bar":
-        return <Bar data={data} options={chartOptions} />;
+        return (
+          <div className="flex justify-center" style={{ height: chartHeight }}>
+            <Bar data={data} options={chartOptions} height={chartHeight} />
+          </div>
+        );
       default:
         return null;
     }
@@ -92,15 +98,13 @@ const Card = ({
 
   return (
     <div
-      className={`card p-4  border-[1px] lg:min-w-44 lg:w-auto w-[47%] justify-between  ${
-        theme === "dark"
-          ? "bg-gray-800 border-gray-700 text-white"
-          : "bg-white border-gray-300 text-gray-500"
-      } ${chartClassName}`}
+      className={`card p-4 border-[1px] ${
+        theme === "dark" ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-gray-300 text-gray-500"
+      } `}
     >
       <div>
-      {icon}
-      <p className="card-title text-sm font-bold mt-4">{title}</p>
+        {icon}
+        <p className="card-title text-sm font-bold mt-4">{title}</p>
       </div>
       {showChart ? (
         <div className="mt-2">{renderChart()}</div>
@@ -163,8 +167,8 @@ Card.propTypes = {
   description: PropTypes.string,
   percentageChange: PropTypes.string,
   period: PropTypes.string,
-  type: PropTypes.string, // 'circular' or 'bar'
-  data: PropTypes.object, // Chart.js data
+  type: PropTypes.string,
+  data: PropTypes.object,
   showValue: PropTypes.bool,
   showDescription: PropTypes.bool,
   showPercentageChange: PropTypes.bool,
