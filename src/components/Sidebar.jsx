@@ -115,7 +115,7 @@ const Sidebar = ({ isOpen, onMenuItemClick }) => {
         </li>
         <li
           className={`flex items-center mb-3 p-2 rounded-md transition duration-300 ${
-            pathname === "/profile"
+            pathname === "/admin-profile"
               ? theme === "dark"
                 ? "bg-gray-700"
                 : "bg-white"
@@ -126,7 +126,7 @@ const Sidebar = ({ isOpen, onMenuItemClick }) => {
         >
           <FaUser className="mr-2 text-xl" />
           <Link
-            to="/profile"
+            to="/admin-profile"
             onClick={() => onMenuItemClick()}
             className={`flex-1 ${
               pathname === "/profile"

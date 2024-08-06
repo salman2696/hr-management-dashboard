@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "./Sidebar";
-import logo from "../assets/images/E&E-logo.png";
+import AdminPohto from "../assets/images/salman2696.jpg";
 import ThemeToggle from "./ThemeToggle";
 import { ThemeContext } from "./ThemeContext";
 
@@ -34,7 +34,7 @@ const Header = () => {
         </button>
         <h1 className="flex items-center space-x-3">
           <img
-            src="https://img.daisyui.com/images/profile/demo/2@94.webp" // Replace with your actual avatar link
+            src={AdminPohto} // Replace with your actual avatar link
             alt="Admin Avatar"
             className="w-10 h-10 rounded-full"
           />

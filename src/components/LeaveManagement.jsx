@@ -1,193 +1,147 @@
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "./ThemeContext";
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
+
+// Sample leave data
+const leaveRequests = [
+  {
+    id: 1,
+    employeeId: 1,
+    startDate: '2024-08-15',
+    endDate: '2024-08-20',
+    reason: 'Medical Leave',
+    status: 'Pending',
+  },
+  {
+    id: 2,
+    employeeId: 2,
+    startDate: '2024-08-22',
+    endDate: '2024-08-25',
+    reason: 'Vacation',
+    status: 'Pending',
+  },
+  {
+    id: 3,
+    employeeId: 3,
+    startDate: '2024-08-30',
+    endDate: '2024-09-05',
+    reason: 'Personal Leave',
+    status: 'Approved',
+  },
+];
+
+// Sample employee data
+const employees = [
+  {
+    id: 1,
+    name: "John Doe",
+    position: "Software Engineer",
+    department: "IT",
+    avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    position: "Product Manager",
+    department: "Marketing",
+    avatar: "https://img.daisyui.com/images/profile/demo/3@94.webp",
+  },
+  {
+    id: 3,
+    name: "Alice Johnson",
+    position: "UX Designer",
+    department: "Design",
+    avatar: "https://img.daisyui.com/images/profile/demo/4@94.webp",
+  },
+  // Add more employees as needed
+];
 
 const LeaveManagement = () => {
   const { theme } = useContext(ThemeContext);
-  const [leaveType, setLeaveType] = useState("");
-  const [leaveStart, setLeaveStart] = useState("");
-  const [leaveEnd, setLeaveEnd] = useState("");
-  const [leaveRequests, setLeaveRequests] = useState([
-    {
-      id: 1,
-      type: "Sick Leave",
-      start: "2024-07-15",
-      end: "2024-07-17",
-      status: "Approved",
-    },
-    {
-      id: 2,
-      type: "Annual Leave",
-      start: "2024-08-01",
-      end: "2024-08-10",
-      status: "Pending",
-    },
-  ]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLeaveRequests([
-      ...leaveRequests,
-      {
-        id: leaveRequests.length + 1,
-        type: leaveType,
-        start: leaveStart,
-        end: leaveEnd,
-        status: "Pending",
-      },
-    ]);
-    setLeaveType("");
-    setLeaveStart("");
-    setLeaveEnd("");
+  // Helper function to get employee details by ID
+  const getEmployeeById = (id) => {
+    return employees.find(employee => employee.id === id);
   };
 
   return (
     <div
-      className={`p-6 w-full rounded-xl shadow-md ${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-800"
+      className={`p-6 rounded-xl min-h-screen shadow-lg ${
+        theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'
       }`}
     >
-      {/* Leave Summary */}
-      <div
-        className={`mb-6 p-4 rounded-lg shadow-sm  ${
-          theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-800"
-        }`}
-      >
-        <h3 className="text-xl font-medium mb-2">Leave Balances</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div
-            className={`p-4 rounded-lg shadow ${
-              theme === "dark"
-                ? "bg-gray-900 text-gray-300"
-                : "bg-white text-gray-700"
-            }`}
-          >
-            <h4 className="text-lg font-semibold">Sick Leave</h4>
-            <p className="text-gray-600">10 days available</p>
-          </div>
-          <div
-            className={`p-4 rounded-lg shadow ${
-              theme === "dark"
-                ? "bg-gray-900 text-gray-300"
-                : "bg-white text-gray-700"
-            }`}
-          >
-            <h4 className="text-lg font-semibold">Annual Leave</h4>
-            <p className="text-gray-600">15 days available</p>
-          </div>
-          <div
-            className={`p-4 rounded-lg shadow ${
-              theme === "dark"
-                ? "bg-gray-900 text-gray-300"
-                : "bg-white text-gray-700"
-            }`}
-          >
-            <h4 className="text-lg font-semibold">Casual Leave</h4>
-            <p className="text-gray-600">5 days available</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Leave Request Form */}
-      <div className="mb-6">
-        <h3 className="text-xl font-medium mb-2">Request New Leave</h3>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="leaveType" className="block text-gray-600">
-              Leave Type
-            </label>
-            <select
-              id="leaveType"
-              value={leaveType}
-              onChange={(e) => setLeaveType(e.target.value)}
-              className={`w-full mt-1 p-2 border rounded-md ${
-                theme === "dark"
-                  ? "bg-gray-700 border-gray-600 text-gray-300"
-                  : " bg-white text-gray-600 border-gray-300"
-              }`}
-              required
-            >
-              <option value="">Select Leave Type</option>
-              <option value="Sick Leave">Sick Leave</option>
-              <option value="Annual Leave">Annual Leave</option>
-              <option value="Casual Leave">Casual Leave</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="leaveStart" className="block text-gray-600">
-              Start Date
-            </label>
-            <input
-              type="date"
-              id="leaveStart"
-              value={leaveStart}
-              onChange={(e) => setLeaveStart(e.target.value)}
-              className={`w-full mt-1 p-2 border rounded-md ${
-                theme === "dark"
-                  ? "bg-gray-700 border-gray-600 text-gray-300"
-                  : " bg-white text-gray-600 border-gray-300"
-              }`}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="leaveEnd" className="block text-gray-600">
-              End Date
-            </label>
-            <input
-              type="date"
-              id="leaveEnd"
-              value={leaveEnd}
-              onChange={(e) => setLeaveEnd(e.target.value)}
-              className={`w-full mt-1 p-2 border rounded-md ${
-                theme === "dark"
-                  ? "bg-gray-700 border-gray-600 text-gray-300"
-                  : " bg-white text-gray-600 border-gray-300"
-              }`}
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className={`w-full p-2 rounded-md ${
-              theme === "dark"
-                ? " bg-red-400 rounded-md hover:bg-red-500"
-                : "bg-red-400 hover:bg-red-500 text-white"
-            } `}
-          >
-            Submit Request
-          </button>
-        </form>
-      </div>
+      <h1 className="text-2xl font-semibold mb-6">Leave Management</h1>
 
       {/* Leave Requests Table */}
-      <div>
-        <h3 className="text-xl font-medium mb-2">Leave Requests</h3>
+      <div className="overflow-x-auto">
         <table
-          className={`w-full border border-gray-200 rounded-lg ${
-            theme === "dark"
-              ? "bg-gray-700 text-gray-300"
-              : "bg-white text-gray-800"
+          className={`w-full border border-gray-200 ${
+            theme === 'dark' ? 'bg-gray-900 text-gray-300' : 'bg-white text-gray-800'
           }`}
         >
           <thead
-            className={`${theme === "dark" ? "bg-gray-600" : "bg-gray-100"}`}
+            className={`${
+              theme === 'dark' ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-700'
+            }`}
           >
             <tr>
-              <th className="p-2 text-left">Type</th>
-              <th className="p-2 text-left">Start Date</th>
-              <th className="p-2 text-left">End Date</th>
-              <th className="p-2 text-left">Status</th>
+              <th className="py-2 px-4 border-b">Employee</th>
+              <th className="py-2 px-4 border-b">Start Date</th>
+              <th className="py-2 px-4 border-b">End Date</th>
+              <th className="py-2 px-4 border-b">Reason</th>
+              <th className="py-2 px-4 border-b">Status</th>
+              <th className="py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {leaveRequests.map((request) => (
-              <tr key={request.id} className="border-t">
-                <td className="p-2">{request.type}</td>
-                <td className="p-2">{request.start}</td>
-                <td className="p-2">{request.end}</td>
-                <td className="p-2">{request.status}</td>
-              </tr>
-            ))}
+          <tbody
+            className={`${
+              theme === 'dark' ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-800'
+            }`}
+          >
+            {leaveRequests.map((request) => {
+              const employee = getEmployeeById(request.employeeId);
+              return (
+                <tr key={request.id}>
+                  <td className="py-2 px-4 border-b">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={employee.avatar}
+                        alt={`${employee.name}'s Avatar`}
+                        className="w-12 h-12 rounded-full"
+                      />
+                      <div>
+                        <div className="font-bold">{employee.name}</div>
+                        <div className="text-sm text-gray-600">{employee.position}</div>
+                        <div className="text-sm text-gray-500">{employee.department}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-2 px-4 border-b">{request.startDate}</td>
+                  <td className="py-2 px-4 border-b">{request.endDate}</td>
+                  <td className="py-2 px-4 border-b">{request.reason}</td>
+                  <td className="py-2 px-4 border-b">{request.status}</td>
+                  <td className="py-2 px-4 border-b">
+                    {request.status === 'Pending' ? (
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => console.log(`Approved leave request with ID: ${request.id}`)}
+                          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => console.log(`Rejected leave request with ID: ${request.id}`)}
+                          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    ) : (
+                      <span className="text-gray-500">N/A</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
