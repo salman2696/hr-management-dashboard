@@ -131,7 +131,7 @@ const Sidebar = ({ isOpen, onMenuItemClick }) => {
             to="/admin-profile"
             onClick={() => onMenuItemClick()}
             className={`flex-1 ${
-              pathname === "/profile"
+              pathname === "/admin-profile"
                 ? theme === "dark"
                   ? "text-blue-400"
                   : "text-blue-500"
