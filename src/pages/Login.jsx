@@ -12,7 +12,7 @@ const Login = () => {
 
     // Replace this with actual authentication logic
     if (
-      email === "mohammad.salman2696@gmail.com" &&
+      email === "xyz@gmail.com" &&
       password === "qwerty12345"
     ) {
       // Save the authentication state
