@@ -10,10 +10,12 @@ import {
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/E&E-logo.png";
+import { AuthContext } from "../context/AuthContext";
 
 const Sidebar = ({ isOpen, onMenuItemClick }) => {
   const { pathname } = useLocation();
   const { theme } = useContext(ThemeContext);
+  const { logout } = useContext(AuthContext);
 
   return (
     <div
@@ -153,7 +155,7 @@ const Sidebar = ({ isOpen, onMenuItemClick }) => {
           <FaSignOutAlt className="mr-2 text-xl" />
           <Link
             to="/logout"
-            onClick={() => onMenuItemClick()}
+            onClick={logout}
             className={`flex-1 ${
               pathname === "/logout"
                 ? theme === "dark"
