@@ -41,6 +41,7 @@ const SearchFilter = ({ onFilterChange }) => {
         <option value="">Select Position</option>
         <option value="Software Engineer">Software Engineer</option>
         <option value="Product Manager">Product Manager</option>
+        <option value="HR Manager">Hr Manager</option>
         {/* Add more positions as needed */}
       </select>
       <select
