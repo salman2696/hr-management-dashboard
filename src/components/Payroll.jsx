@@ -1,29 +1,13 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ThemeContext } from "./ThemeContext";
+import employees from "../EmployessData";
 import {
   FaUserTie,
   FaDollarSign,
   FaCalendarAlt,
   FaMoneyBillWave,
 } from "react-icons/fa";
-
-const employees = [
-  {
-    id: 1,
-    name: "John Doe",
-    position: "Software Engineer",
-    avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp",
-    salary: "$80,000",
-    monthlyLeaves: 2,
-    allowances: {
-      HRA: "$1,200",
-      TA: "$800",
-      PF: "$400",
-    },
-  },
-  // Add other employees as needed
-];
 
 const Payroll = () => {
   const { id } = useParams();
