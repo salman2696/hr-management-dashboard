@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Outlet } from "react-router-dom";
 import { ThemeContext } from "./ThemeContext";
 import employees from "../EmployessData";
 import {
@@ -39,11 +39,12 @@ const EmployeeDetails = () => {
         Back
       </button>
       <button
-        onClick={() => navigate(`/payroll/${id}`)}
+        onClick={() => navigate("payroll")}
         className="mb-4 float-end px-4 py-2 text-white bg-red-400 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         Payroll
       </button>
+      <Outlet />
 
       <div className="flex flex-col lg:flex-row lg:space-x-8">
         {/* Employee Profile Section */}
