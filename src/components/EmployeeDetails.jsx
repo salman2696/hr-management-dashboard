@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams, useNavigate, Outlet } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ThemeContext } from "./ThemeContext";
 import employees from "../EmployessData";
 import {
@@ -44,7 +44,6 @@ const EmployeeDetails = () => {
       >
         Payroll
       </button>
-      <Outlet />
 
       <div className="flex flex-col lg:flex-row lg:space-x-8">
         {/* Employee Profile Section */}

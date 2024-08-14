@@ -36,12 +36,11 @@ function App() {
             <Route
               path="/employee-details/:id"
               element={<ProtectedRoute element={EmployeeDetails} />}
-            >
-              <Route
-                path="payroll"
-                element={<ProtectedRoute element={Payroll} />}
-              />
-            </Route>
+            />
+            <Route
+              path="/employee-details/:id/payroll"
+              element={<ProtectedRoute element={Payroll} />}
+            />
             <Route
               path="/leave-management"
               element={<ProtectedRoute element={LeaveManagement} />}
