@@ -19,7 +19,7 @@ const Sidebar = ({ isOpen, onMenuItemClick }) => {
 
   return (
     <div
-      className={`sidebar fixed top-0 z-20 h-full lg:w-[20%] w-[45%] p-4 transition-transform duration-300 ${
+      className={`sidebar fixed top-0 z-20 h-full lg:w-[20%] w-[45%] p-4 transition-transform duration-300 drop-shadow-lg ${
         isOpen ? "translate-x-0" : "-translate-x-[100%]"
       } lg:translate-x-0 ${
         theme === "dark"
