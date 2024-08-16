@@ -7,7 +7,7 @@ const TopEmployeesCard = ({ employees }) => {
 
   return (
     <div
-      className={`card text-center shadow-xl p-4 border-[1px] w-full ${
+      className={`card text-center shadow-lg p-4 border-[1px] w-full ${
         theme === "dark"
           ? "bg-gray-800 border-gray-700 text-white"
           : "bg-white border-gray-300 text-black"

@@ -4,9 +4,9 @@ import SearchFilter from "./SearchFilter";
 import { ThemeContext } from "./ThemeContext";
 import employees from "../EmployessData";
 
-
 const EmployeeList = () => {
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
@@ -24,6 +24,12 @@ const EmployeeList = () => {
     setFilteredEmployees(filtered);
   };
 
+  const handleAddEmployee = (newEmployee) => {
+    employees.push({ id: employees.length + 1, ...newEmployee });
+    setFilteredEmployees([...employees]);
+    setIsModalOpen(false); // Close the modal after adding
+  };
+
   const handleViewClick = (employee) => {
     navigate(`/employee-details/${employee.id}`);
   };
@@ -35,25 +41,28 @@ const EmployeeList = () => {
       }`}
     >
       <div
-        className={`shadow-md z-10 flex md:flex-row flex-col items-center justify-between p-4 rounded-lg ${
+        className={`shadow-md z-10 flex md:flex-row flex-col items-center justify-between p-4 rounded-xl ${
           theme === "dark"
-            ? "bg-gray-900 text-gray-200"
+            ? "bg-gray-800 text-gray-200"
             : "bg-white text-gray-800"
         }`}
       >
         <h1 className="text-2xl mb-4 md:mb-0">Employees</h1>
-        <SearchFilter onFilterChange={handleFilterChange} />
+        <SearchFilter 
+          onFilterChange={handleFilterChange} 
+          onAddEmployeeClick={() => setIsModalOpen(true)} // Pass the function to open the modal
+        />
       </div>
       <div
-        className={`overflow-x-auto mt-4 ${
+        className={`overflow-x-auto mt-4 rounded-xl ${
           theme === "dark" ? "bg-gray-800" : "bg-white"
         }`}
       >
         <table
-          className={`table w-full border border-gray-200 ${
+          className={`table w-full ${
             theme === "dark"
               ? "bg-gray-900 text-gray-300"
-              : "bg-white text-gray-800"
+              : "bg-gray-100 text-gray-800"
           }`}
         >
           <thead
@@ -110,6 +119,92 @@ const EmployeeList = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal for Adding Employee */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div
+            className={`p-6 rounded-lg shadow-lg w-96 ${
+              theme === "dark"
+                ? "bg-gray-800 text-gray-200"
+                : "bg-white text-gray-800"
+            }`}
+          >
+            <h2 className="text-xl mb-4">Add New Employee</h2>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target;
+                const newEmployee = {
+                  name: form.name.value,
+                  location: form.location.value,
+                  position: form.position.value,
+                  department: form.department.value,
+                  avatar: "https://via.placeholder.com/150", // Placeholder avatar
+                };
+                handleAddEmployee(newEmployee);
+              }}
+            >
+              <div className="mb-4">
+                <label className="block text-sm font-medium">Name</label>
+                <input
+                  name="name"
+                  type="text"
+                  className={`input input-bordered w-full ${
+                    theme === "dark" ? "bg-gray-700 text-gray-300" : "bg-white text-gray-700"
+                  }`}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium">Location</label>
+                <input
+                  name="location"
+                  type="text"
+                  className={`input input-bordered w-full ${
+                    theme === "dark" ? "bg-gray-700 text-gray-300" : "bg-white text-gray-700"
+                  }`}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium">Position</label>
+                <input
+                  name="position"
+                  type="text"
+                  className={`input input-bordered w-full ${
+                    theme === "dark" ? "bg-gray-700 text-gray-300" : "bg-white text-gray-700"
+                  }`}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium">Department</label>
+                <input
+                  name="department"
+                  type="text"
+                  className={`input input-bordered w-full ${
+                    theme === "dark" ? "bg-gray-700 text-gray-300" : "bg-white text-gray-700"
+                  }`}
+                  required
+                />
+              </div>
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="btn btn-secondary"
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Add Employee
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

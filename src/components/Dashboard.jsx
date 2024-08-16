@@ -70,7 +70,7 @@ const Dashboard = () => {
     >
       {/* Flex container for the first set of cards */}
       <div className="flex flex-wrap gap-4 mb-4">
-        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4 drop-shadow-lg">
           <Card
             icon={<MdPeople />}
             title="Total Employees"
@@ -80,7 +80,7 @@ const Dashboard = () => {
             period="This month"
           />
         </div>
-        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4 drop-shadow-lg">
           <Card
             icon={<MdTrendingUp />}
             title="Revenue Growth"
@@ -90,7 +90,7 @@ const Dashboard = () => {
             period="This month"
           />
         </div>
-        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4 drop-shadow-lg">
           <Card
             icon={<MdAttachMoney />}
             title="Total Donations"
@@ -100,7 +100,7 @@ const Dashboard = () => {
             period="This month"
           />
         </div>
-        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4">
+        <div className="flex-1 min-w-[250px] md:min-w-[300px] lg:w-1/4 drop-shadow-lg">
           <Card
             icon={<MdAccessTime />}
             title="Working Hours"
@@ -114,7 +114,7 @@ const Dashboard = () => {
 
       {/* Flex container for the task target, task count, and top employees */}
       <div className="flex flex-wrap gap-4">
-        <div className="flex-1 min-w-[250px] lg:w-[25%]">
+        <div className="flex-1 min-w-[250px] lg:w-[25%] drop-shadow-lg">
           <Card
             icon={<MdAssignment />}
             title="Complete Task Target"
@@ -125,7 +125,7 @@ const Dashboard = () => {
             showPeriod={false}
           />
         </div>
-        <div className="flex-1 min-w-[250px] lg:w-[25%]">
+        <div className="flex-1 min-w-[250px] lg:w-[25%] drop-shadow-lg">
           <Card
             icon={<MdAssignment />}
             title="Task Count"
